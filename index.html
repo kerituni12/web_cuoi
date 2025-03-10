@@ -2777,9 +2777,8 @@
               </a>
             </div>
             <div id="w-wsycqc2j" class="com-html-box p-absolute">
-              <div class="frame-html-box full-width full-height">
-
-                <iframe style="display: none;" width="420" height="420" style="border:0;" allowfullscreen=""
+              <div class="frame-html-box full-width full-height"  >
+                <iframe  id="gg-iframe"  class="d-none" width="420" height="420" style="border:0;" allowfullscreen=""
                   loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
@@ -2980,12 +2979,18 @@
         background-size: cover !important;
       }
 
-      .d-none {
+      .vis-hidden {
         visibility: hidden;
       }
+
+      .d-none {
+        display: none;
+      }
+
+
     </style>
-    <div id="popup-backdrop" class="popup-backdrop full-width full-height d-none"></div>
-    <div id="popup-content" class="popup-center d-none" style="z-index: 1000001; display: none;">
+    <div id="popup-backdrop" class="popup-backdrop full-width full-height vis-hidden"></div>
+    <div id="popup-content" class="popup-center vis-hidden" style="z-index: 1000001; display: none;">
       <div class="popup-wrapper p-absolute full-width full-height" style="height: 381px;">
         <div class="popup-background p-absolute full-width full-height"></div>
         <div id="w-egb0djld" class="com-rectangle p-absolute">
@@ -3038,13 +3043,15 @@
 
       function handleLoad() {
         handleScroll()
+        handleSendX();
+        handleClosePopup();
 
         const body = document.querySelector("body");
         body.style.overflow = "unset";
 
-        const iframe = document.querySelector("iframe");
+        const iframe = document.getElementById("gg-iframe");
         if (iframe) {
-          iframe.style.display = "block";
+          iframe.classList.remove("d-none");
           iframe.src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d651.4916893013392!2d108.8030963104254!3d15.152190830707406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3169ad19442720a3%3A0x9ccc0c87bec2dfad!2zVGnhu4dtIFRyw6AgVGjDoW5nIDU!5e1!3m2!1sen!2sus!4v1741538304543!5m2!1sen!2sus";
         }
 
@@ -3069,9 +3076,9 @@
         const sendXButton = document.getElementById("send-x");
         sendXButton.addEventListener("click", () => {
           const popup = document.getElementById("popup-backdrop");
-          popup.classList.remove("d-none");
+          popup.classList.remove("vis-hidden");
           const popupContent = document.getElementById("popup-content");
-          popupContent.classList.remove("d-none");
+          popupContent.classList.remove("vis-hidden");
         });
       }
 
@@ -3079,23 +3086,22 @@
         const closePopup = document.getElementById("close-popup");
         const backdrop = document.getElementById("popup-backdrop");
         backdrop.addEventListener("click", () => {
-            backdrop.classList.add("d-none");
+            backdrop.classList.add("vis-hidden");
             const popupContent = document.getElementById("popup-content");
-            popupContent.classList.add("d-none");
+            popupContent.classList.add("vis-hidden");
           });
 
         closePopup.addEventListener("click", () => {
-          backdrop.classList.add("d-none");
+          backdrop.classList.add("vis-hidden");
           const popupContent = document.getElementById("popup-content");
-          popupContent.classList.add("d-none");
+          popupContent.classList.add("vis-hidden");
         });
       }
 
 
       window.addEventListener("scroll", handleScroll);
       window.addEventListener("load", handleLoad);
-      handleSendX();
-      handleClosePopup();
+     
 
     </script>
 </body>
