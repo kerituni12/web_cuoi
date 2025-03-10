@@ -53,6 +53,7 @@
       background-color: #fff;
       font-size: 12px;
       color: #000;
+      overflow: hidden;
     }
 
     .pageview {
@@ -2778,10 +2779,8 @@
             <div id="w-wsycqc2j" class="com-html-box p-absolute">
               <div class="frame-html-box full-width full-height">
 
-                <iframe style="display: none;"
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d651.4916893013392!2d108.8030963104254!3d15.152190830707406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3169ad19442720a3%3A0x9ccc0c87bec2dfad!2zVGnhu4dtIFRyw6AgVGjDoW5nIDU!5e1!3m2!1sen!2sus!4v1741538304543!5m2!1sen!2sus"
-                  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe style="display: none;" width="420" height="420" style="border:0;" allowfullscreen=""
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
 
@@ -2908,7 +2907,7 @@
       }
 
       #w-c9e6skrm {
-        top: 10px;
+        top: 15px;
         left: 22px;
         width: 349px;
         height: 60px;
@@ -2921,7 +2920,7 @@
         border-style: solid;
         color: rgba(0, 0, 0, 1);
         font-family: 'Roboto', sans-serif;
-        font-size: 26px;
+        font-size: 24px;
         font-weight: bold;
         text-align: center;
         --type: 0;
@@ -2943,12 +2942,9 @@
       }
 
       #w-z0xec0uk .image-background {
-        width: 318.2px;
-        height: 688px;
-        top: -169px;
-        left: -59.30952380952384px;
-        background: center center/ cover no-repeat scroll content-box border-box url("https://content.pancake.vn/1/fwebp/e2/bc/35/38/dc2d9ddf74d997785eb0c802bd3237a50de1118e505f1e0a89ae4ec1-w:592-h:1280-l:497233-t:image/png.png");
-        --type: 0;
+        width: 100%;
+        height: 100%;
+        background: center center/ cover no-repeat scroll content-box border-box url("./web_files/qr.jpg");
       }
 
       #w-z0xec0uk .image-background-compare {
@@ -2985,11 +2981,11 @@
       }
 
       .d-none {
-        display: none;
+        visibility: hidden;
       }
     </style>
     <div id="popup-backdrop" class="popup-backdrop full-width full-height d-none"></div>
-    <div id="popup-content" class="popup-center d-none" style="z-index: 1000001;">
+    <div id="popup-content" class="popup-center d-none" style="z-index: 1000001; display: none;">
       <div class="popup-wrapper p-absolute full-width full-height" style="height: 381px;">
         <div class="popup-background p-absolute full-width full-height"></div>
         <div id="w-egb0djld" class="com-rectangle p-absolute">
@@ -3040,6 +3036,22 @@
         return rect.top < window.innerHeight && rect.bottom > 0;
       }
 
+      function handleLoad() {
+        handleScroll()
+
+        const body = document.querySelector("body");
+        body.style.overflow = "unset";
+
+        const iframe = document.querySelector("iframe");
+        if (iframe) {
+          iframe.style.display = "block";
+          iframe.src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d651.4916893013392!2d108.8030963104254!3d15.152190830707406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3169ad19442720a3%3A0x9ccc0c87bec2dfad!2zVGnhu4dtIFRyw6AgVGjDoW5nIDU!5e1!3m2!1sen!2sus!4v1741538304543!5m2!1sen!2sus";
+        }
+
+        const popupContent = document.getElementById("popup-content");
+        popupContent.style.display = "block";
+      }
+
       function handleScroll() {
         const elements = document.querySelectorAll(".is-animation");
         elements.forEach((element) => {
@@ -3049,10 +3061,8 @@
           }
         });
 
-        const iframe = document.querySelector("iframe");
-        if (iframe) {
-          iframe.style.display = "block";
-        }
+
+
       }
 
       function handleSendX() {
@@ -3067,10 +3077,15 @@
 
       function handleClosePopup() {
         const closePopup = document.getElementById("close-popup");
+        const backdrop = document.getElementById("popup-backdrop");
+        backdrop.addEventListener("click", () => {
+            backdrop.classList.add("d-none");
+            const popupContent = document.getElementById("popup-content");
+            popupContent.classList.add("d-none");
+          });
+
         closePopup.addEventListener("click", () => {
-          console.log("🚀 ~ handleClosePopup ~ closePopup:", closePopup)
-          const popup = document.getElementById("popup-backdrop");
-          popup.classList.add("d-none");
+          backdrop.classList.add("d-none");
           const popupContent = document.getElementById("popup-content");
           popupContent.classList.add("d-none");
         });
@@ -3078,7 +3093,7 @@
 
 
       window.addEventListener("scroll", handleScroll);
-      window.addEventListener("load", handleScroll);
+      window.addEventListener("load", handleLoad);
       handleSendX();
       handleClosePopup();
 
