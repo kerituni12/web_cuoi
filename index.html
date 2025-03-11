@@ -5,7 +5,8 @@
   <title>THƯ MỜI CƯỚI HIẾU-THY</title>
   <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name=viewport content="width=420,user-scalable=no,initial-scale=0.9285714285714286,minimum-scale=0.9285714285714286,maximum-scale=0.9285714285714286">
+  <meta name=viewport
+    content="width=420,user-scalable=no,initial-scale=0.9285714285714286,minimum-scale=0.9285714285714286,maximum-scale=0.9285714285714286">
   <!-- Primary Meta Tags -->
   <meta name="title" content="THƯ MỜI CƯỚI HIẾU-THY" />
   <meta name="description" content="THƯ MỜI CƯỚI HIẾU-THY" />
@@ -2345,7 +2346,7 @@
           </div>
           <div id=w-m1l6yd27 class="com-image-block p-absolute cursor-pointer">
             <div class="image-block-css p-relative full-width full-height full-mask-size mask-position">
-              <div class="image-background p-absolute lazy"></div>
+              <div class="image-background p-absolute"></div>
             </div>
           </div>
         </div>
@@ -2975,9 +2976,88 @@
         font-display: swap
       }
     </style>
+    <audio id="myAudio" muted></audio>
+
     <link rel=stylesheet href=./web_files/animatev4.css>
-    <script>function isInViewport(e) { const n = e.getBoundingClientRect(); return n.top < window.innerHeight && n.bottom > 0 } function handleLoad() { handleScroll(), handleSendX(), handleClosePopup(); document.querySelector("body").style.overflow = "unset"; const e = document.getElementById("gg-iframe"); e && (e.classList.remove("d-none"), e.src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d651.4916893013392!2d108.8030963104254!3d15.152190830707406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3169ad19442720a3%3A0x9ccc0c87bec2dfad!2zVGnhu4dtIFRyw6AgVGjDoW5nIDU!5e1!3m2!1sen!2sus!4v1741538304543!5m2!1sen!2sus"); document.getElementById("popup-content").style.display = "block" } function handleScroll() { document.querySelectorAll(".is-animation").forEach((e => { isInViewport(e) && (e.classList.remove("is-animation"), e.classList.add("animation")) })) } function handleSendX() { document.getElementById("send-x").addEventListener("click", (() => { document.getElementById("popup-backdrop").classList.remove("vis-hidden"); document.getElementById("popup-content").classList.remove("vis-hidden") })) } function handleClosePopup() { const e = document.getElementById("close-popup"), n = document.getElementById("popup-backdrop"); n.addEventListener("click", (() => { n.classList.add("vis-hidden"); document.getElementById("popup-content").classList.add("vis-hidden") })), e.addEventListener("click", (() => { n.classList.add("vis-hidden"); document.getElementById("popup-content").classList.add("vis-hidden") })) } window.addEventListener("scroll", handleScroll), window.addEventListener("load", handleLoad)</script>
+    <script>
+      function isInViewport(e) {
+        const n = e.getBoundingClientRect(); return n.top < window.innerHeight && n.bottom > 0
+      }
+      function handleLoad() {
+        handleScroll(), handleSendX(), handleClosePopup();
+        const myAudio = document.getElementById("myAudio");
+        myAudio.src = "./web_files/mpeg.mp3";
+        document.querySelector("body").style.overflow = "unset"; const e = document.getElementById("gg-iframe"); e &&
+          (e.classList.remove("d-none"), e.src =
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d651.4916893013392!2d108.8030963104254!3d15.152190830707406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3169ad19442720a3%3A0x9ccc0c87bec2dfad!2zVGnhu4dtIFRyw6AgVGjDoW5nIDU!5e1!3m2!1sen!2sus!4v1741538304543!5m2!1sen!2sus");
+        document.getElementById("popup-content").style.display = "block"
+      } function handleScroll() {
+        document.querySelectorAll(".is-animation").forEach((e => {
+          isInViewport(e) && (e.classList.remove("is-animation"),
+            e.classList.add("animation"))
+        }))
+      } function handleSendX() {
+        document.getElementById("send-x").addEventListener("click", (() => {
+          document.getElementById("popup-backdrop").classList.remove("vis-hidden");
+          document.getElementById("popup-content").classList.remove("vis-hidden")
+        }))
+      }
+      function handleClosePopup() {
+        const e = document.getElementById("close-popup"), n =
+          document.getElementById("popup-backdrop"); n.addEventListener("click", (() => {
+            n.classList.add("vis-hidden");
+            document.getElementById("popup-content").classList.add("vis-hidden")
+          })), e.addEventListener("click", (() => {
+            n.classList.add("vis-hidden"); document.getElementById("popup-content").classList.add("vis-hidden")
+          }))
+      }
+      window.addEventListener("scroll", handleScroll), window.addEventListener("load", handleLoad)
+
+      document.addEventListener("DOMContentLoaded", function() {
+        const audio = document.getElementById("myAudio");
+        const iconMute = document.getElementById("w-17tsexjy");
+        const iconPlay = document.getElementById("w-m1l6yd27");
+
+        function setupAudioControls() {
+          iconMute.style.display = "none";
+          iconPlay.style.display = "block";
+          
+          iconMute.addEventListener("click", () => {
+            audio.play();
+            iconMute.style.display = "none";
+            iconPlay.style.display = "block";
+          });
+
+          iconPlay.addEventListener("click", () => {
+            audio.pause();
+            iconMute.style.display = "block";
+            iconPlay.style.display = "none";
+          });
+        }
+
+        // Try autoplay
+        audio.play().then(() => {
+          setTimeout(() => {
+            audio.muted = false;
+            setupAudioControls();
+          }, 1000);
+        }).catch(() => {
+          console.log("Autoplay blocked, waiting for user interaction...");
+          
+          // Wait for user interaction
+          document.addEventListener("click", () => {
+            audio.muted = false;
+            audio.play().then(setupAudioControls);
+          }, { once: true });
+        });
+      });
+
+    </script>
+
   </div>
+
+
+  </script>
 </body>
 
 </html>
