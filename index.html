@@ -397,7 +397,7 @@
       height: 50px;
       z-index: 10;
       position: fixed;
-      left: calc((100% - 420px)/ 2 + 20px);
+      right: calc((100% - 420px)/ 2 + 6px);
       bottom: 20px
     }
 
@@ -429,7 +429,7 @@
       height: 50px;
       z-index: 10;
       position: fixed;
-      left: calc((100% - 420px)/ 2 + 20px);
+      right: calc((100% - 420px)/ 2 + 6px);
       bottom: 20px
     }
 
@@ -462,7 +462,7 @@
       height: 50px;
       z-index: 10;
       position: fixed;
-      left: calc((100% - 420px)/ 2 + 20px);
+      right: calc((100% - 420px)/ 2 + 6px);
       bottom: 20px
     }
 
@@ -2976,7 +2976,7 @@
         font-display: swap
       }
     </style>
-    <audio id="myAudio" muted></audio>
+    <audio id="myAudio" muted autoplay="false"></audio>
 
     <link rel=stylesheet href=./web_files/animatev4.css>
     <script>
@@ -3040,7 +3040,7 @@
           setTimeout(() => {
             audio.muted = false;
             setupAudioControls();
-          }, 1000);
+          }, 0);
         }).catch(() => {
           console.log("Autoplay blocked, waiting for user interaction...");
           
