@@ -3044,7 +3044,7 @@
         }).catch(() => {
           console.log("Autoplay blocked, waiting for user interaction...");
           
-          audio.stop();
+          audio.pause();
           // Wait for user interaction
           document.addEventListener("click", () => {
             audio.muted = false;
